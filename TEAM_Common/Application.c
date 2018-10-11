@@ -85,7 +85,7 @@ void APP_EventHandler(EVNT_Handle event) {
       int i;
       for (i=0;i<5;i++) {
         LED1_Neg();
-        WAIT1_Waitms(50);
+        WAIT1_Waitms(500);
       }
       LED1_Off();
     }
@@ -183,11 +183,10 @@ void APP_Start(void) {
   PL_Init();
   APP_AdoptToHardware();
   __asm volatile("cpsie i"); /* enable interrupts */
+  EVNT_Init();
+  EVNT_SetEvent(EVNT_STARTUP);
   for(;;) {
-	  LED1_On();
-	  WAIT1_Waitms(500);
-	  LED1_Off();
-	  WAIT1_Waitms(500);
+	  EVNT_HandleEvent(APP_EventHandler,TRUE);
   }
 }
 
