@@ -89,6 +89,7 @@ void APP_EventHandler(EVNT_Handle event) {
       }
       LED1_Off();
     }
+    break;
   case EVNT_LED_HEARTBEAT:
     LED2_Neg();
     break;
