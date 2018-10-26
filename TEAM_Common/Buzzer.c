@@ -112,8 +112,8 @@ static void BUZ_Toggle(void *dataPtr) {
 uint8_t BUZ_Beep(uint16_t freq, uint16_t durationMs) {
   if (trgInfo.buzIterationCntr==0) { /* only if buzzer is not running right now */
     BUZ1_SetVal(); /* turn buzzer on */
-    trgInfo.buzPeriodTicks = (1000*TRG_TICKS_MS)/freq;
-    trgInfo.buzIterationCntr = durationMs/TRG_TICKS_MS/trgInfo.buzPeriodTicks;
+    trgInfo.buzPeriodTicks = (1000*TRG_TICKS_MS)/freq; //Hier 2
+    trgInfo.buzIterationCntr = durationMs/TRG_TICKS_MS/trgInfo.buzPeriodTicks; //Hier 2000
     return TRG_SetTrigger(TRG_BUZ_BEEP, trgInfo.buzPeriodTicks, BUZ_Toggle, (void*)&trgInfo);
   } else {
     return ERR_BUSY;

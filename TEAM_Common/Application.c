@@ -99,7 +99,7 @@ void APP_EventHandler(EVNT_Handle event) {
 		//BtnMsg(1, "pressed");
 		CLS1_SendStr("SW1 pressed", CLS1_GetStdio()->stdOut);
 		break;
-	case EVNT_SW4_PRESSED:
+	/*case EVNT_SW4_PRESSED:
 		LED1_Neg();
 		//BtnMsg(1, "pressed");
 		CLS1_SendStr("SW4 pressed", CLS1_GetStdio()->stdOut);
@@ -110,6 +110,7 @@ void APP_EventHandler(EVNT_Handle event) {
 			//BtnMsg(1, "pressed");
 			CLS1_SendStr("SW2 pressed", CLS1_GetStdio()->stdOut);
 			break;
+			*/
 #endif
 	default:
 		break;
@@ -203,9 +204,10 @@ void APP_Start(void) {
 	//Events Init Data Structure
 	EVNT_Init();
 	EVNT_SetEvent(EVNT_STARTUP);
+	BUZ_Beep(500,1000);
+	//BUZ_PlayTune(BUZ_TUNE_BUTTON_LONG);
 	for (;;) {
 		EVNT_HandleEvent(APP_EventHandler, TRUE);
-
 	}
 }
 
